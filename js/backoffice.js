@@ -33,15 +33,38 @@ const handleSaveBtn = (event) => {
     })
     .then((newProductObj) => {
       if (id) {
-        console.log(`Modificato oggetto esistente" + ${newProductObj.name},`);
+        alert("Modificato prodotto esistente: " + newProductObj.name);
       } else {
-        console.log(`Creato nuovo prodotto + ${newProductObj.name},`);
+        setTimeout(() => {
+          window.location.assign("/");
+        }, 2000);
+        alert("Prodotto: " + newProductObj.name + " creato con successo");
+        //console.log(`Creato nuovo prodotto + ${newProductObj.name},`);
       }
-    });
+    })
+    .catch((error) => console.log(error));
 };
 
 //funzione per gestire delete button su form edit
-const handleDeleteBtn = () => {};
+const handleDeleteBtn = () => {
+  fetch(URL, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then((deletedProduct) => {
+      setTimeout(() => {
+        window.location.assign("/");
+      }, 2000);
+      alert("Prodotto: " + deletedProduct.name + " eliminato con successo");
+    });
+};
 
 //funzione tasto reset
 const handleResetBtn = () => {};
@@ -57,7 +80,7 @@ window.addEventListener("DOMContentLoaded", function () {
     title.innerText = "Edit product details";
     saveBtn.innerText = "Save changes";
     deleteBtn.classList.remove("d-none");
-    //deleteBtn.onclick  GESTISCI AZIONE DELETE
+    deleteBtn.onclick = handleDeleteBtn;
 
     //fetch per recuperare dati oggetto esistente, da inserire in form
     fetch(URL, {
