@@ -18,7 +18,7 @@ const createProductCards = (obj) => {
                       </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
-                          <button type="button" class="btn btn-sm btn-outline-secondary view-btn">Details</button>
+                          <a class="btn btn-sm btn-outline-secondary hide-btn" href="./details.html?prodId=${product._id}">Details</a>
                           <a class="btn btn-sm btn-outline-secondary hide-btn" href="./backoffice.html?prodId=${product._id}">Edit</a>
                         </div>
                         <span class="fw-bold fs-3">${product.price} €</span>
