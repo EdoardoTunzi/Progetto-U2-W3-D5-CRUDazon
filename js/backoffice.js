@@ -8,6 +8,7 @@ const method = id ? "PUT" : "POST";
 //funzione per gestire tasto Addproduct o Save edits
 const handleSaveBtn = (event) => {
   event.preventDefault();
+  //console.log(event.target.elements.name.value);
 
   const newProduct = {
     name: event.target.elements.name.value,
@@ -16,6 +17,27 @@ const handleSaveBtn = (event) => {
     imageUrl: event.target.elements.imageUrl.value,
     price: event.target.elements.price.value
   };
+
+  fetch(URL, {
+    method,
+    body: JSON.stringify(newProduct),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then((newProductObj) => {
+      if (id) {
+        console.log(`Modificato oggetto esistente" + ${newProductObj.name},`);
+      } else {
+        console.log(`Creato nuovo prodotto + ${newProductObj.name},`);
+      }
+    });
 };
 
 //funzione per gestire delete button su form edit
@@ -29,7 +51,7 @@ window.addEventListener("DOMContentLoaded", function () {
   const saveBtn = document.getElementById("saveBtn");
   const deleteBtn = document.getElementById("deleteBtn");
   const title = document.querySelector("h2");
-
+  prodDataForm.onsubmit = handleSaveBtn;
   // se al caricamento c'è un id allora faccio reperire i dati per popolare il form
   if (id) {
     title.innerText = "Edit product details";
