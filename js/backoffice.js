@@ -69,7 +69,8 @@ const handleDeleteBtn = () => {
         window.location.assign("/");
       }, 2000);
       alert("Prodotto: " + deletedProduct.name + " eliminato con successo");
-    });
+    })
+    .catch((error) => console.log(error));
 };
 
 //funzione tasto reset
@@ -116,6 +117,7 @@ window.addEventListener("DOMContentLoaded", function () {
         brandInput.innerText = product.brand;
         imageUrlInput.innerText = product.imageUrl;
         priceInput.innerText = product.price;
-      });
+      })
+      .catch((error) => console.log(error));
   }
 });
