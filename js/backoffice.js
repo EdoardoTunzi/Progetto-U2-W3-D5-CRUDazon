@@ -5,6 +5,12 @@ const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzM3MGUwODhhZDEyOTAwMTU4NzZiYzgiLCJpYXQiOjE3MzE2NjEzMjAsImV4cCI6MTczMjg3MDkyMH0.FvOf_mebQAdi5M66y4-5Tdg7Z_srSRoNtGZENCpsO60";
 const method = id ? "PUT" : "POST";
 
+const nameInput = document.getElementById("name");
+const descriptionInput = document.getElementById("description");
+const brandInput = document.getElementById("brand");
+const imageUrlInput = document.getElementById("imageUrl");
+const priceInput = document.getElementById("price");
+
 //funzione per gestire tasto Addproduct o Save edits
 const handleSaveBtn = (event) => {
   event.preventDefault();
@@ -67,14 +73,23 @@ const handleDeleteBtn = () => {
 };
 
 //funzione tasto reset
-const handleResetBtn = () => {};
+const handleResetBtn = () => {
+  nameInput.innerText = "";
+  descriptionInput.innerText = "";
+  brandInput.innerText = "";
+  imageUrlInput.innerText = "";
+  priceInput.innerText = "";
+};
 
 window.addEventListener("DOMContentLoaded", function () {
   const prodDataForm = document.querySelector("form");
   const saveBtn = document.getElementById("saveBtn");
   const deleteBtn = document.getElementById("deleteBtn");
+  const resetBtn = document.getElementById("resetBtn");
   const title = document.querySelector("h2");
+
   prodDataForm.onsubmit = handleSaveBtn;
+  resetBtn.onclick = handleResetBtn;
   // se al caricamento c'è un id allora faccio reperire i dati per popolare il form
   if (id) {
     title.innerText = "Edit product details";
@@ -96,12 +111,6 @@ window.addEventListener("DOMContentLoaded", function () {
         }
       })
       .then((product) => {
-        const nameInput = document.getElementById("name");
-        const descriptionInput = document.getElementById("description");
-        const brandInput = document.getElementById("brand");
-        const imageUrlInput = document.getElementById("imageUrl");
-        const priceInput = document.getElementById("price");
-
         nameInput.innerText = product.name;
         descriptionInput.innerText = product.description;
         brandInput.innerText = product.brand;
