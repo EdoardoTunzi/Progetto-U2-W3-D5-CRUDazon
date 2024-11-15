@@ -4,9 +4,7 @@ const token =
 const mainRow = document.getElementById("mainRow");
 
 const createProductCards = (obj) => {
-  mainRow.innerHTML = "";
   obj.forEach((product) => {
-    //console.log(photo.src.original);
     const col = document.createElement("div");
     col.className = "col-md-4";
     const card = document.createElement("div");
@@ -21,7 +19,7 @@ const createProductCards = (obj) => {
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
                           <button type="button" class="btn btn-sm btn-outline-secondary view-btn">Details</button>
-                          <button type="button" class="btn btn-sm btn-outline-secondary hide-btn">Edit</button>
+                          <a class="btn btn-sm btn-outline-secondary hide-btn" href="./backoffice.html?prodId=${product._id}">Edit</a>
                         </div>
                         <span class="fw-bold fs-3">${product.price} €</span>
                       </div>
@@ -40,6 +38,8 @@ const handleAPIfetch = function () {
     .then((response) => {
       if (response.ok) {
         return response.json();
+      } else {
+        throw new Error(`Sorry we are having problem in retrieving data from server. Error: ${response.statusText}`);
       }
     })
     .then((productsObj) => {
