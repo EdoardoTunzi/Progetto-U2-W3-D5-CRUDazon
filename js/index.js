@@ -12,14 +12,14 @@ const createProductCards = (obj) => {
     card.innerHTML = `
             <img src="${product.imageUrl}" class="bd-placeholder-img card-img-top img-fluid object-fit"/>
                     <div class="card-body">
-                      <h5 class="card-title">${product.name}</h5>
-                      <p class="card-text">
+                      <h5 class="card-title text-truncate">${product.name}</h5>
+                      <p class="card-text text-truncate">
                         ${product.description}
                       </p>
                       <div class="d-flex justify-content-between align-items-center">
                         <div>
                           <a class="btn btn-sm btn-outline-secondary hide-btn" href="./details.html?prodId=${product._id}">Details</a>
-                          <a class="btn btn-sm btn-outline-secondary hide-btn" href="./backoffice.html?prodId=${product._id}">Edit</a>
+                          <a class="btn btn-sm btn-outline-secondary hide-btn" href="./backoffice.html?prodId=${product._id}"><i class="bi bi-pencil-fill"></i></a>
                         </div>
                         <span class="fw-bold fs-3">${product.price} €</span>
                       </div>
