@@ -19,13 +19,13 @@ window.addEventListener("DOMContentLoaded", function () {
       const detailsDiv = document.getElementById("detailsDiv");
       detailsDiv.innerHTML = `
       <h2 class="text-center">${product.name}</h2>
-      <div class="d-flex my-4">
-        <img class="rounded-3" src="${product.imageUrl}" width="200" alt="" />
-        <div class="ms-5">
-          <p id="description">Description: ${product.description}</p>
-          <p id="prodId">ID: ${product._id}</p>
-          <p id="brand">Brand: ${product.brand}</p>
-          <p id="price">Price: ${product.price} €</p>
+      <div class="d-flex flex-wrap my-4 align-items-center">
+        <img class="rounded-5 border" src="${product.imageUrl}" width="250" alt="" />
+        <div class="ms-3">
+          <p id="description"><span class="fw-bold">Description:</span> ${product.description}</p>
+          <p id="prodId"><span class="fw-bold">ID:</span> ${product._id}</p>
+          <p id="brand"><span class="fw-bold">Brand:</span> ${product.brand}</p>
+          <p id="price"><span class="fw-bold">Price:</span> ${product.price} €</p>
         </div>
       </div>
       <a href="./index.html">Back to homepage</a>
